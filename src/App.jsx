@@ -782,8 +782,7 @@ Headlines: ${headlines}`
 
 // ─── NEWSAPI FETCH ────────────────────────────────────────────────────────────
 async function fetchNews(query, apiKey, page = 1) {
-  if (!apiKey || apiKey.includes("YOUR_")) return null;
-  const url = `https://gnews.io/api/v4/search?q=${encodeURIComponent(query)}&lang=en&max=10&page=${page}&token=${apiKey}`;
+  const url = `/api/news?query=${encodeURIComponent(query)}&page=${page}`;
   const res = await fetch(url);
   const data = await res.json();
   if (data.errors) throw new Error(data.errors[0] || "GNews error");
